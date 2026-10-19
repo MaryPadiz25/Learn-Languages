@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>90-Day Language Coach</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#f6f3ec;--card:#fff;--ink:#1d2a2a;--mut:#6b7777;--ac:#0f766e;--ac2:#e8f3f1;--ok:#15803d;--bad:#b91c1c;--bd:#ddd6c8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a1a;--card:#1b2626;--ink:#eef3f1;--mut:#97a8a5;--ac:#3fc1b3;--ac2:#1f3532;--ok:#4ade80;--bad:#f87171;--bd:#2b3b3a}}
+:root[data-theme="dark"]{--bg:#121a1a;--card:#1b2626;--ink:#eef3f1;--mut:#97a8a5;--ac:#3fc1b3;--ac2:#1f3532;--ok:#4ade80;--bad:#f87171;--bd:#2b3b3a}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Georgia,'Times New Roman',serif}
+main{max-width:640px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:26px;margin:.2em 0}h2{font-size:30px;margin:.3em 0}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px;margin:14px 0}
+button{font:inherit;font-family:system-ui,sans-serif;font-size:15px;border:1px solid var(--bd);background:var(--card);color:var(--ink);padding:10px 16px;border-radius:10px;margin:4px 4px 4px 0;cursor:pointer}
+button.pri{background:var(--ac);color:#fff;border-color:var(--ac)}
+button.sel{background:var(--ac2);border-color:var(--ac);color:var(--ac)}
+input[type=text]{width:100%;font:inherit;font-size:20px;padding:12px;border-radius:10px;border:2px solid var(--bd);background:var(--bg);color:var(--ink)}
+small,.m{color:var(--mut);font-family:system-ui,sans-serif;font-size:13px}
+.bar{height:8px;background:var(--ac2);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
+.tg{color:var(--ac)}.ok{color:var(--ok)}.bad{color:var(--bad)}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row button{flex:1;min-width:110px}
+.steps span{display:inline-block;padding:4px 10px;border-radius:99px;background:var(--ac2);font:13px system-ui;margin:2px}
+.steps .on{background:var(--ac);color:#fff}.steps .dn{opacity:.5;text-decoration:line-through}
+:root{--bg:#f3f5fb;--card:rgba(255,255,255,.72);--ink:#0f172a;--mut:#64748b;--ac:#5b4bff;--ac2:rgba(91,75,255,.1);--ok:#059669;--bad:#dc2626;--bd:rgba(15,23,42,.09);--c0:#22d3ee;--c1:#8b5cf6;--c2:#f43f5e}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#080b16;--card:rgba(255,255,255,.055);--ink:#f1f5f9;--mut:#94a3b8;--ac:#a095ff;--ac2:rgba(143,131,255,.16);--ok:#34d399;--bad:#fb7185;--bd:rgba(255,255,255,.1)}}
+:root[data-theme="dark"]{--bg:#080b16;--card:rgba(255,255,255,.055);--ink:#f1f5f9;--mut:#94a3b8;--ac:#a095ff;--ac2:rgba(143,131,255,.16);--ok:#34d399;--bad:#fb7185;--bd:rgba(255,255,255,.1)}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(600px 420px at 8% -5%,rgba(139,92,246,.33),transparent),radial-gradient(520px 420px at 100% 8%,rgba(34,211,238,.24),transparent),radial-gradient(520px 400px at 50% 112%,rgba(244,63,94,.17),transparent)}
+main{max-width:760px}h1,h2,.rt b,.tile b,.crs b{font-family:'Space Grotesk',system-ui,sans-serif;letter-spacing:-.02em}
+h1{font-size:clamp(32px,7vw,48px);line-height:1.08}h2{font-size:clamp(26px,5vw,34px)}
+.gr{background:linear-gradient(90deg,var(--c1),var(--c0));-webkit-background-clip:text;background-clip:text;color:transparent}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;justify-content:space-between;align-items:center;padding:8px 16px;background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:blur(14px)}
+.top button{margin:0;border-radius:99px;min-height:40px;padding:8px 16px}.brand{font-weight:800;font-size:17px;border:0!important;background:none!important}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:22px;backdrop-filter:blur(12px);box-shadow:0 14px 40px -24px rgba(0,0,0,.5)}
+button{min-height:46px;border-radius:12px;padding:12px 18px;transition:transform .15s,box-shadow .15s;font-weight:600}button:hover{transform:translateY(-1px)}
+button.pri{background:linear-gradient(135deg,var(--c1),var(--c0));border:0;color:#fff;font-weight:700;box-shadow:0 10px 26px -10px var(--c1)}
+button.sel{background:var(--ac2);border-color:var(--ac);color:var(--ac)}
+input[type=text]{border-radius:14px;margin:8px 0}input[type=text]:focus{outline:3px solid var(--ac2);border-color:var(--ac)}
+.bar{height:7px}.bar i{background:linear-gradient(90deg,var(--c1),var(--c0))}
+.hero{padding:26px 0 8px}.hero p{color:var(--mut);font-size:17px;max-width:540px}
+.chip{display:inline-block;padding:5px 12px;border-radius:99px;background:var(--ac2);color:var(--ac);font:700 12px system-ui;letter-spacing:.04em;text-transform:uppercase}
+.courses{display:grid;gap:12px;margin-top:14px}.crs{text-align:left;display:block;width:100%;padding:20px;border-radius:22px;background:var(--card);border:1px solid var(--bd);margin:0;backdrop-filter:blur(12px)}
+.crs:hover{border-color:var(--ac);transform:translateY(-3px)}.fl{font-size:30px}.fl i{font-style:normal;color:var(--mut);margin:0 10px;font-size:18px}.crs b{display:block;font-size:21px;margin-top:4px}.crs small{display:block;margin:2px 0 10px}.crs em{font-style:normal;color:var(--ac);font-weight:700;display:block;margin-top:12px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}.feat div{padding:14px;border-radius:16px;background:var(--card);border:1px solid var(--bd);font:14px system-ui;color:var(--mut)}.feat b{display:block;color:var(--ink);font-size:15px}
+.pills{display:flex;gap:6px;overflow-x:auto;margin:6px 0 12px}.pill{border-radius:99px;padding:8px 16px;min-height:0;margin:0;white-space:nowrap}
+.main{display:flex;gap:22px;align-items:center}.ringwrap{position:relative;width:128px;height:128px;flex:none}.ring{width:128px;height:128px;transform:rotate(-90deg)}
+.rb,.rf{fill:none;stroke-width:10}.rb{stroke:var(--ac2)}.rf{stroke:var(--c1);stroke-linecap:round;transition:stroke-dashoffset 1s}
+.rt{position:absolute;inset:0;display:grid;place-content:center;text-align:center}.rt b{font-size:36px;line-height:1}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:12px 0}.tile{padding:14px;border-radius:16px;background:var(--card);border:1px solid var(--bd)}.tile b{display:block;font-size:22px}
+.seg{display:flex;gap:6px}.seg button{flex:1;margin:0}.cta{width:100%;font-size:18px;padding:16px;margin:12px 0 0}
+.wd{display:inline-flex;flex-direction:column;text-align:left;margin:4px 6px 4px 0}.wd b{color:var(--ac)}
+.map{display:grid;grid-template-columns:repeat(15,1fr);gap:4px;margin-top:10px}.cell{aspect-ratio:1;border-radius:6px;background:var(--ac2)}
+.cell.L0{box-shadow:inset 0 0 0 1px rgba(34,211,238,.45)}.cell.L1{box-shadow:inset 0 0 0 1px rgba(139,92,246,.45)}.cell.L2{box-shadow:inset 0 0 0 1px rgba(244,63,94,.45)}
+.cell.f.L0{background:var(--c0)}.cell.f.L1{background:var(--c1)}.cell.f.L2{background:var(--c2)}.cell.now{outline:2px solid var(--ink);animation:pl 1.6s infinite}@keyframes pl{50%{transform:scale(1.18)}}
+.ex{font-size:13px;min-height:0;padding:6px 14px;border-radius:99px;color:var(--mut);margin:0 0 8px}
+html{-webkit-text-size-adjust:100%}button,.crs,.wd{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+input[type=text]{font-size:18px}
+@media(max-width:600px){
+main{padding-top:10px;padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
+.top button:last-child{font-size:0;padding:0;width:42px;height:42px}.top button:last-child::before{content:"\25d0";font-size:20px}
+.hero{padding-top:14px}.hero p{font-size:15px}
+.card{padding:16px;border-radius:18px}.crs{padding:16px}
+.main{flex-direction:column;align-items:flex-start;gap:12px}
+.main>div:last-child{width:100%}.ringwrap,.ring{width:104px;height:104px}.rt b{font-size:30px}
+.tiles{grid-template-columns:1fr 1fr;gap:8px}.tile{padding:12px}.tile b{font-size:19px}
+.feat{grid-template-columns:1fr 1fr}
+.map{gap:3px}.cell{border-radius:4px}
+.steps span{font-size:12px;padding:4px 8px}
+.wd{width:calc(50% - 6px);margin:3px 6px 3px 0;min-height:56px}
+.card h2{font-size:28px;overflow-wrap:anywhere}
+.card>button{width:100%;margin:6px 0}
+.cta{position:sticky;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:5;box-shadow:0 12px 30px -8px var(--c1)}
+#fb button{width:100%}
+.ex{align-self:flex-start}}
+@media(max-width:360px){h1{font-size:28px}.feat{grid-template-columns:1fr}}
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet"></head><body><header class="top"><button class="brand" onclick="home()">🗣️ Lingua90</button><button onclick="th()" aria-label="Toggle light or dark theme">◐ Theme</button></header><main id="app"></main>
+<script>
+const D=`Greetings~Hello|Bonjour|Kumusta~Thank you|Merci|Salamat~Please|S’il vous plaît|Palihug~Goodbye|Au revoir|Babay
+Basics~Yes|Oui|Oo~No|Non|Dili~Sorry|Désolé|Pasayloa ko~Welcome|Bienvenue|Maayong pag-abot
+Numbers 1–4~one|un|usa~two|deux|duha~three|trois|tulo~four|quatre|upat
+Numbers 5–10~five|cinq|lima~six|six|unom~seven|sept|pito~ten|dix|napulo
+Colors~red|rouge|pula~blue|bleu|asul~green|vert|berde~white|blanc|puti
+Family~mother|mère|nanay~father|père|tatay~brother|frère|igsoon nga lalaki~sister|sœur|igsoon nga babaye
+Food~bread|pain|pan~rice|riz|kan-on~fish|poisson|isda~water|eau|tubig
+Animals~dog|chien|iro~cat|chat|iring~bird|oiseau|langgam~pig|cochon|baboy
+Time words~today|aujourd’hui|karon~tomorrow|demain|ugma~yesterday|hier|gahapon~week|semaine|semana
+Home~house|maison|balay~door|porte|pultahan~table|table|lamesa~bed|lit|higdaanan
+Introductions~My name is Ana|Je m’appelle Ana|Ang akong ngalan kay Ana~How are you?|Comment allez-vous ?|Kumusta ka?~I am fine|Je vais bien|Maayo ra ko~Nice to meet you|Enchanté|Nalipay ko nga nahimamat ka
+Directions~Where is the market?|Où est le marché ?|Asa ang merkado?~left|à gauche|wala~right|à droite|tuo~straight ahead|tout droit|diretso
+Shopping~How much is it?|Combien ça coûte ?|Tagpila ni?~too expensive|trop cher|mahal kaayo~I want this|Je veux ça|Gusto ko niini~cheaper|moins cher|mas barato
+Restaurant~I am hungry|J’ai faim|Gigutom ko~I am thirsty|J’ai soif|Giuhaw ko~delicious|délicieux|lami~The bill, please|L’addition, s’il vous plaît|Ang bill, palihug
+Telling time~What time is it?|Quelle heure est-il ?|Unsa na oras?~morning|matin|buntag~night|nuit|gabii~late|en retard|ulahi
+Weather~It is raining|Il pleut|Nag-ulan~It is hot|Il fait chaud|Init~sun|soleil|adlaw~cold|froid|bugnaw
+Travel~airport|aéroport|tugpahanan~ticket|billet|tiket~I am lost|Je suis perdu|Nawala ko~Where is the bus?|Où est le bus ?|Asa ang bus?
+Feelings~happy|heureux|malipayon~sad|triste|masulob-on~tired|fatigué|gikapoy~I love you|Je t’aime|Gihigugma tika
+Health~I am sick|Je suis malade|Masakiton ko~doctor|médecin|doktor~headache|mal de tête|sakit sa ulo~I need help|J’ai besoin d’aide|Nagkinahanglan ko og tabang
+Work~I work here|Je travaille ici|Nagtrabaho ko dinhi~office|bureau|opisina~meeting|réunion|miting~boss|patron|boss
+Opinions~I think that|Je pense que|Sa akong hunahuna~I agree|Je suis d’accord|Uyon ko~I disagree|Je ne suis pas d’accord|Dili ko uyon~maybe|peut-être|siguro
+Past tense~I went to school yesterday|Je suis allé à l’école hier|Miadto ko sa eskwelahan gahapon~I already ate|J’ai déjà mangé|Nikaon na ko~I did not know|Je ne savais pas|Wala ko kabalo~last year|l’année dernière|miaging tuig
+Future tense~I will travel tomorrow|Je voyagerai demain|Mobiyahe ko ugma~next week|la semaine prochaine|sunod semana~I will call you|Je vais t’appeler|Tawagan tika~soon|bientôt|dili madugay
+Polite requests~Could you help me?|Pourriez-vous m’aider ?|Matabangan ba nimo ko?~Excuse me|Excusez-moi|Pasayloa ko~Could you repeat?|Pouvez-vous répéter ?|Mahimo nimo balikon?~I don’t understand|Je ne comprends pas|Wala ko makasabot
+Conditionals~If it rains, I will stay home|S’il pleut, je resterai à la maison|Kung mag-ulan, mopuyo ko sa balay~I would like water|Je voudrais de l’eau|Gusto ko og tubig~if possible|si possible|kung mahimo~unless|à moins que|gawas kung
+Business~contract|contrat|kontrata~I accept the price|J’accepte le prix|Uyon ko sa presyo~deadline|date limite|taning panahon~customer|client|kustomer
+Emergencies~Call the police|Appelez la police|Tawga ang pulis~fire|incendie|sunog~hospital|hôpital|ospital~It is urgent|C’est urgent|Dinalian ni
+Culture~tradition|tradition|tradisyon~festival|fête|pista~I like your country|J’aime votre pays|Gusto nako ang inyong nasud~to share a meal|partager un repas|magpaambit og pagkaon
+Conversation~What do you do?|Que faites-vous dans la vie ?|Unsa imong trabaho?~Where are you from?|D’où venez-vous ?|Taga-asa ka?~I am learning|J’apprends|Nagtuon ko~I speak a little|Je parle un peu|Gamay ra ko’g sabot
+Farewell~See you tomorrow|À demain|Kita ta ugma~Take care|Prenez soin de vous|Amping~Good luck|Bonne chance|Swerte~Congratulations|Félicitations|Maayong pagbati`
+.split('\n').map(l=>{const p=l.split('~');return{t:p[0],i:p.slice(1).map(x=>{const a=x.split('|');return{en:a[0],fr:a[1],ceb:a[2]}})}});
+const P={'fr-en':{n:'French → English',s:'fr',t:'en',tl:'en-US'},'en-fr':{n:'English → French',s:'en',t:'fr',tl:'fr-FR'},'en-ceb':{n:'English → Cebuano',s:'en',t:'ceb',tl:'fil-PH'}};
+const $=id=>document.getElementById(id),today=()=>new Date().toDateString();
+let S,T,k,sc,nxt,ttl,run=false;
+const load=p=>{try{return JSON.parse(localStorage.getItem('lp_'+p))}catch(e){return null}};
+const save=()=>{try{localStorage.setItem('lp_'+S.pair,JSON.stringify(S));localStorage.setItem('lp_last',S.pair)}catch(e){}};
+const lvl=d=>d<=30?'Basic':d<=60?'Intermediate':'Advanced';
+const unit=d=>D[Math.ceil(d/3)-1];
+const shuf=a=>a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+const norm=s=>s.toLowerCase().replace(/[’']/g,"'").replace(/[.,!?¡¿;:"]/g,'').replace(/\s+/g,' ').trim();
+const flat=s=>norm(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/œ/g,'oe');
+function lev(a,b){const m=[...Array(a.length+1)].map((_,i)=>[i]);for(let j=1;j<=b.length;j++)m[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(a[i-1]==b[j-1]?0:1));return m[a.length][b.length]}
+const sim=(a,b)=>{a=flat(a);b=flat(b);return 1-lev(a,b)/Math.max(a.length,b.length,1)};
+function speak(t,l){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=l;u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+
+function home(){run=false;const last=localStorage.getItem('lp_last');
+ $('app').innerHTML=`<h1>🗣️ 90-Day Language Coach</h1><p class=m>Daily sessions from basic to advanced, with written and spoken practice. Pick a course:</p>`+
+ Object.keys(P).map(p=>{const s=load(p);return `<div class=card><b>${P[p].n}</b><br><small>${s?`Day ${Math.min(s.day,90)} of 90 · ${lvl(Math.min(s.day,90))}`:'Not started'}</small><br><button class=pri onclick="start('${p}')">${s?'Continue':'Start'}</button></div>`}).join('')+`<small>Progress is saved in this browser on this device.</small>`}
+function start(p){S=load(p)||{pair:p,day:1,ph:1,date:'',hrs:1,sec:{},log:{}};save();dash()}
+function dash(){run=false;const p=P[S.pair],d=S.day;
+ if(d>90){$('app').innerHTML=`<h1>🎉 Course complete!</h1><p>You finished all 90 days of ${p.n}.</p><button onclick="home()">Home</button>`;return}
+ const done=S.ph==3,u=unit(d),st=['Review','Learn','Quiz'].map((x,i)=>`<span class="${S.ph==i?'on':S.ph>i?'dn':''}">${x}</span>`).join('');
+ const g=Object.keys(S.log).slice(-5).map(x=>`Day ${x}: ${S.log[x].q||'–'}`).join(' · ');
+ $('app').innerHTML=`<small><a href="#" onclick="home();return false" style="color:var(--ac)">← All courses</a></small><h1>${p.n}</h1>
+ <div class=card><small>DAY ${d} OF 90 · ${lvl(d).toUpperCase()}</small><h2>${u.t}</h2><div class=bar><i style="width:${(d-1)/.9}%"></i></div>
+ <div class=steps style="margin-top:10px">${st}</div>
+ ${done?`<p>✅ Today’s session is complete. Your next topic unlocks tomorrow.</p>${S.date!=today()?'':`<button onclick="adv()">Continue anyway →</button>`}${S.date!=today()?`<button class=pri onclick="adv()">Start Day ${d+1}</button>`:''}`:
+ `<p class=m>Session length (study clock):</p>${[1,2,3].map(h=>`<button class="${S.hrs==h?'sel':''}" onclick="S.hrs=${h};save();dash()">${h} hr</button>`).join('')}<br>
+ <button class=pri onclick="go()">${S.ph==0?'Start review of past days':S.ph==1?'Start today’s lesson':'Take today’s quiz'}</button>`}
+ <p><small>Time studied today: ${fmt(S.sec[d]||0)}</small></p>${g?`<small>Recent quiz scores — ${g}</small>`:''}</div>`}
+function adv(){S.day++;S.ph=S.day>1?0:1;if(S.day>1&&S.day>1&&Math.ceil((S.day-1)/3)<1)S.ph=1;save();dash()}
+const fmt=s=>[s/3600|0,(s/60|0)%60,s%60].map(x=>String(x).padStart(2,'0')).join(':');
+function mk(items,kinds){return shuf(items.flatMap(it=>kinds.map(t=>({t,it}))))}
+function go(){const d=S.day;run=true;
+ if(S.ph==0){const past=D.slice(0,Math.ceil((d-1)/3)).flatMap(u=>u.i);if(!past.length){S.ph=1}else{
+  return runT(shuf(mk(shuf(past).slice(0,12),['w','d','v'])).slice(0,15),'Review of past sessions',(s,n)=>{S.log[d-1]=S.log[d-1]||{};S.log[d-1].r=s+'/'+n;S.ph=1;save();dash()})}}
+ const it=unit(d).i;
+ if(S.ph==1){const m=(d-1)%3,seq=[['s','w','d','v'],['d','w','d','w'],['v','s','v','w']][m];let t=[];
+  for(let r=0;r<S.hrs;r++)t=t.concat(it.flatMap(x=>seq.map(y=>({t:y,it:x}))));
+  return runT(t,'Lesson: '+unit(d).t,()=>{S.ph=2;save();dash()})}
+ runT(mk(it,['w','d','v']),'Quiz: '+unit(d).t,(s,n)=>{S.log[d]={q:s+'/'+n};S.ph=3;S.date=today();save();dash()})}
+function runT(t,title,done){T=t;k=0;sc=0;ttl=title;nxt=done;show()}
+function show(){if(k>=T.length)return nxt(sc,T.filter(x=>x.t!='s').length);
+ const x=T[k],p=P[S.pair],sr=x.it[p.s],tg=x.it[p.t],sp=T.filter(z=>z.t!='s').length;
+ let h=`<small>${ttl} · ${k+1}/${T.length} · ⏱ <span id=clk>${fmt(S.sec[S.day]||0)}</span> / ${S.hrs} hr</small><div class=bar><i style="width:${k/T.length*100}%"></i></div><div class=card>`;
+ if(x.t=='s')h+=`<small>NEW</small><h2>${sr}</h2><h2 class=tg>${tg}</h2><button onclick="say()">🔊 Listen</button><button onclick="mic()">🎤 Say it</button>`;
+ if(x.t=='w')h+=`<small>WRITTEN · type in ${p.t=='en'?'English':p.t=='fr'?'French':'Cebuano'}</small><h2>${sr}</h2><input type=text id=in autocomplete=off autocapitalize=off spellcheck=false><button class=pri onclick="chk()">Check</button>`;
+ if(x.t=='d')h+=`<small>LISTEN &amp; SPELL · type what you hear</small><h2>🔊 ?</h2><button onclick="say()">Play again</button><input type=text id=in autocomplete=off autocapitalize=off spellcheck=false><button class=pri onclick="chk()">Check</button>`;
+ if(x.t=='v')h+=`<small>SPEAKING · say it aloud</small><h2>${sr}</h2><button class=pri onclick="mic()">🎤 Speak</button>`;
+ $('app').innerHTML=h+`<div id=fb style="margin-top:10px"></div></div>`;
+ if(x.t=='d')setTimeout(say,300);if($('in')){$('in').focus();$('in').onkeydown=e=>{if(e.key=='Enter')chk()}}}
+const say=()=>{const x=T[k];speak(x.it[P[S.pair].t],P[S.pair].tl)};
+function res(pass,msg){const x=T[k];if(x.d)return;x.d=1;const tg=x.it[P[S.pair].t];if(x.t!='s'&&pass)sc++;
+ $('fb').innerHTML=(x.t=='s'?'':`<b class="${pass?'ok':'bad'}">${pass?'✓ Correct':'✗ Not quite'}</b> `)+(msg||'')+(pass&&x.t!='s'?'':`<div>Answer: <b>${tg}</b></div>`)+`<button onclick="say()">🔊</button><button class=pri onclick="k++;show()">Next →</button>`;
+ if($('in'))$('in').disabled=true}
+function chk(){const x=T[k],tg=x.it[P[S.pair].t],v=$('in').value;if(!v.trim())return;
+ if(norm(v)==norm(tg))res(1,'');else if(flat(v)==flat(tg))res(0,'Check your accents and spelling marks.');else res(0,'')}
+function mic(){const R=window.SpeechRecognition||window.webkitSpeechRecognition,x=T[k],tg=x.it[P[S.pair].t];
+ if(x.t=='s'&&!x.d){}
+ if(!R){$('fb').innerHTML=`Speech recognition isn’t available here (try Chrome or Edge). Listen, say it aloud, then rate yourself: <b>${tg}</b><br><button onclick="x2(1)">I said it right</button><button onclick="x2(0)">Needs work</button>`;say();return}
+ const r=new R();r.lang=P[S.pair].tl;$('fb').textContent='Listening…';
+ r.onresult=e=>{const h=e.results[0][0].transcript,s=sim(h,tg);if(x.t=='s'){x.d=1;$('fb').innerHTML=`${s>=.75?'<b class=ok>✓ Good pronunciation</b>':'<b class=bad>Try again</b>'} — heard “${h}” (${Math.round(s*100)}%)<br><button onclick="mic()">Retry</button><button class=pri onclick="k++;show()">Next →</button>`;x.d=0}else res(s>=.75,`Heard “${h}” (${Math.round(s*100)}% match). `)};
+ r.onerror=e=>{$('fb').innerHTML=`Mic problem (${e.error}). Allow microphone access, or <button onclick="x2(1)">I said it right</button><button onclick="x2(0)">Needs work</button>`};r.start()}
+const x2=v=>res(v,'');
+setInterval(()=>{if(!run||!S)return;S.sec[S.day]=(S.sec[S.day]||0)+1;const c=$('clk');if(c)c.textContent=fmt(S.sec[S.day]);if(S.sec[S.day]%15==0)save()},1000);
+</script>
+<script>
+const FL={'fr-en':['🇫🇷','🇬🇧'],'en-fr':['🇬🇧','🇫🇷'],'en-ceb':['🇬🇧','🇵🇭']};
+const pct=p=>{const s=load(p);return s?Math.min(100,Math.round((s.day-1+(s.ph==3?1:0))/.9)):0};
+try{const t=localStorage.getItem('lp_theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+function th(){const r=document.documentElement,dk=r.dataset.theme?r.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=dk?'light':'dark';try{localStorage.setItem('lp_theme',r.dataset.theme)}catch(e){}}
+const sp=i=>speak(unit(S.day).i[i][P[S.pair].t],P[S.pair].tl);
+function home(){run=false;$('app').innerHTML=`<section class=hero><span class=chip>90 days · Basic → Advanced</span><h1>Speak a new language in <span class=gr>90 days</span></h1><p>One guided session a day with written, listening and speaking practice, plus a review of everything you’ve learned before each new topic.</p></section><div class=courses>`+Object.keys(P).map(p=>{const s=load(p),f=FL[p];return `<button class=crs onclick="start('${p}')"><span class=fl>${f[0]}<i>→</i>${f[1]}</span><b>${P[p].n}</b><small>${s?`Day ${Math.min(s.day,90)} of 90 · ${lvl(Math.min(s.day,90))}`:'Ready to begin'}</small><div class=bar><i style="width:${pct(p)}%"></i></div><em>${s?'Continue':'Start'} →</em></button>`}).join('')+`</div><div class=feat><div><b>🎧 Listen</b>Native-style audio</div><div><b>✍️ Spell</b>Accent-aware checking</div><div><b>🎤 Speak</b>Pronunciation scoring</div><div><b>🔁 Review</b>Every past topic, daily</div></div>`}
+function dash(){run=false;const p=P[S.pair],d=S.day;
+ if(d>90){$('app').innerHTML=`<section class=hero><h1>🎉 Course <span class=gr>complete!</span></h1><p>You finished all 90 days of ${p.n}.</p><button class=pri onclick="home()">Home</button></section>`;return}
+ const done=S.ph==3,u=unit(d),fin=d-1+(done?1:0),C=326.7;
+ const qs=Object.values(S.log).map(x=>x.q).filter(Boolean).map(q=>q.split('/')),av=qs.length?Math.round(qs.reduce((a,b)=>a+b[0]/b[1],0)/qs.length*100)+'%':'–';
+ const pills=Object.keys(P).map(q=>`<button class="pill ${q==S.pair?'sel':''}" onclick="start('${q}')">${FL[q][0]} → ${FL[q][1]}</button>`).join('');
+ const st=['Review','Learn','Quiz'].map((x,i)=>`<span class="${S.ph==i?'on':S.ph>i?'dn':''}">${i+1}. ${x}</span>`).join('');
+ const map=[...Array(90)].map((_,i)=>{const n=i+1;return `<i class="cell L${n<=30?0:n<=60?1:2} ${n<=fin?'f':''} ${n==d?'now':''}" title="Day ${n} · ${unit(n).t}"></i>`}).join('');
+ const words=u.i.map((x,i)=>`<button class=wd onclick="sp(${i})"><b>🔊 ${x[p.t]}</b><small>${x[p.s]}</small></button>`).join('');
+ $('app').innerHTML=`<div class=pills>${pills}</div>
+ <section class="card main"><div class=ringwrap><svg viewBox="0 0 120 120" class=ring><circle cx=60 cy=60 r=52 class=rb /><circle cx=60 cy=60 r=52 class=rf stroke-dasharray="${C}" stroke-dashoffset="${C*(1-fin/90)}"/></svg><div class=rt><b>${d}</b><small>of 90</small></div></div>
+ <div><span class=chip>${lvl(d)} · ${p.n}</span><h2>${u.t}</h2><div class=steps>${st}</div></div></section>
+ <div class=tiles><div class=tile><small>Days done</small><b>${fin}</b></div><div class=tile><small>Studied today</small><b>${fmt(S.sec[d]||0)}</b></div><div class=tile><small>Quiz average</small><b>${av}</b></div><div class=tile><small>Course</small><b>${Math.round(fin/.9)}%</b></div></div>
+ <section class=card><small>TODAY’S SESSION</small>
+ ${done?`<p>✅ Today’s session is complete. Your next topic unlocks tomorrow.</p><button class="${S.date!=today()?'pri':''}" onclick="adv()">${S.date!=today()?`Start Day ${d+1}`:'Continue anyway →'}</button>`:
+ `<p class=m>Study clock length</p><div class=seg>${[1,2,3].map(h=>`<button class="${S.hrs==h?'sel':''}" onclick="S.hrs=${h};save();dash()">${h} hr</button>`).join('')}</div>
+ <button class="pri cta" onclick="go()">${S.ph==0?'▶ Start review of past days':S.ph==1?'▶ Start today’s lesson':'▶ Take today’s quiz'}</button>`}</section>
+ <section class=card><small>TODAY’S WORDS · tap to hear</small><div>${words}</div></section>
+ <section class=card><small>YOUR 90-DAY ROADMAP · <span style="color:var(--c0)">Basic</span> · <span style="color:var(--c1)">Intermediate</span> · <span style="color:var(--c2)">Advanced</span></small><div class=map>${map}</div></section>`}
+const _show=show;show=function(){_show();if(T&&k<T.length)$('app').insertAdjacentHTML('afterbegin','<button class=ex onclick="save();dash()">✕ Save &amp; exit</button>')};
+const IX=new Map();D.forEach((u,a)=>u.i.forEach((it,b)=>IX.set(it,[a,b])));
+runT=function(t,title,done){const c=S.cur,res=c&&c.ph==S.ph&&c.ttl==title&&c.k<c.t.length;
+ if(res)t=c.t.map(a=>({t:a[0],it:D[a[1]].i[a[2]]}));else{S.cur={ph:S.ph,ttl:title,t:t.map(x=>[x.t,...IX.get(x.it)]),k:0,sc:0};save()}
+ T=t;k=res?c.k:0;sc=res?c.sc:0;ttl=title;nxt=(s,n)=>{S.cur=null;done(s,n)};show()};
+const _show2=show;show=function(){_show2();if(S.cur&&k<T.length){S.cur.k=k;S.cur.sc=sc;save();const e=document.querySelector('.ex');if(e){e.textContent='← Back · progress saves automatically';e.onclick=dash}}};
+const _dash=dash;dash=function(){_dash();const c=S.cur,b=document.querySelector('.cta');if(b&&c&&c.ph==S.ph&&c.k>0&&c.k<c.t.length)b.textContent='▶ Resume where you left off ('+c.k+'/'+c.t.length+')'};
+addEventListener('pagehide',()=>{if(S&&S.pair)save()});document.addEventListener('visibilitychange',()=>{if(document.hidden&&S&&S.pair)save()});
+home();
+</script></body></html>
