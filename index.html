@@ -111,8 +111,8 @@ Farewell~See you tomorrow|À demain|Kita ta ugma~Take care|Prenez soin de vous|A
 const P={'fr-en':{n:'French → English',s:'fr',t:'en',tl:'en-US'},'en-fr':{n:'English → French',s:'en',t:'fr',tl:'fr-FR'},'en-ceb':{n:'English → Cebuano',s:'en',t:'ceb',tl:'fil-PH'}};
 const $=id=>document.getElementById(id),today=()=>new Date().toDateString();
 let S,T,k,sc,nxt,ttl,run=false;
-const load=p=>{try{return JSON.parse(localStorage.getItem('lp_'+p))}catch(e){return null}};
-const save=()=>{try{localStorage.setItem('lp_'+S.pair,JSON.stringify(S));localStorage.setItem('lp_last',S.pair)}catch(e){}};
+let load=p=>{try{return JSON.parse(localStorage.getItem('lp_'+p))}catch(e){return null}};
+let save=()=>{try{localStorage.setItem('lp_'+S.pair,JSON.stringify(S));localStorage.setItem('lp_last',S.pair)}catch(e){}};
 const lvl=d=>d<=30?'Basic':d<=60?'Intermediate':'Advanced';
 const unit=d=>D[Math.ceil(d/3)-1];
 const shuf=a=>a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
@@ -228,5 +228,17 @@ function ib(){const o=$('ins');if(o)o.remove();if(stand()||(!DI&&!IOS))return;co
 function tip(){const d=document.createElement('div');d.style.cssText='position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:50;padding:16px;border-radius:16px;background:var(--bg);color:var(--ink);border:1px solid var(--ac);box-shadow:0 20px 50px -10px rgba(0,0,0,.5)';d.innerHTML='<b>Install on iPhone / iPad</b><p class=m style="margin:6px 0">In Safari tap the <b>Share</b> button, then <b>Add to Home Screen</b>.</p><button class=pri onclick="this.parentNode.remove()" style="margin:0">Got it</button>';document.body.appendChild(d)}
 addEventListener('beforeinstallprompt',e=>{e.preventDefault();DI=e;ib()});addEventListener('appinstalled',()=>{DI=null;ib()});ib();
 if('serviceWorker' in navigator&&location.protocol.indexOf('http')==0)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+let REC=null;
+mic=function(){const R=window.SpeechRecognition||window.webkitSpeechRecognition,x=T[k],tg=x.it[P[S.pair].t],fb=$('fb');
+ if(!R){fb.innerHTML=`Speech recognition isn’t available here (try Chrome or Edge). Say it aloud, then rate yourself: <b>${tg}</b><br><button onclick="x2(1)">I said it right</button><button onclick="x2(0)">Needs work</button>`;say();return}
+ try{REC&&REC.abort()}catch(e){}
+ const r=REC=new R();r.lang=P[S.pair].tl;fb.textContent='🎤 Listening… speak now';
+ r.onresult=e=>{const h=e.results[0][0].transcript,s=sim(h,tg),m=`Heard “${h}” (${Math.round(s*100)}% match). `;
+  if(x.t=='s')fb.innerHTML=`${s>=.75?'<b class=ok>✓ Good pronunciation</b>':'<b class=bad>Not quite</b>'} — ${m}<br><button onclick="mic()">🎤 Try again</button><button class=pri onclick="k++;show()">Next →</button>`;else res(s>=.75,m)};
+ r.onerror=e=>{fb.innerHTML=`Couldn’t hear you (${e.error}). Check the microphone permission.<br><button class=pri onclick="mic()">🎤 Try again</button><button onclick="k++;show()">Skip →</button>`};
+ r.onend=()=>{if(fb.textContent.includes('Listening'))fb.innerHTML='Didn’t catch that.<br><button class=pri onclick="mic()">🎤 Try again</button><button onclick="k++;show()">Skip →</button>'};
+ try{r.start()}catch(e){setTimeout(()=>{try{r.start()}catch(_){}},300)}};
+const _res=res;res=function(p,m){const x=T[k];if(x.t=='v'&&!p&&!x.d){$('fb').innerHTML=`<b class=bad>✗ Not quite</b> ${m||''}<div>Say: <b>${x.it[P[S.pair].t]}</b></div><button onclick="say()">🔊 Hear it</button><button class=pri onclick="mic()">🎤 Try again</button><button onclick="k++;show()">Skip →</button>`;return}_res(p,m)};
+
 home();
 </script></body></html>
