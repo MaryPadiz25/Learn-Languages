@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><title>90-Day Language Coach</title>
+<html lang="en"><head><meta charset="utf-8"><title>Lingua90 – 90-Day Language Coach</title>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#6d5efc"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Lingua90"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>
 :root{--bg:#f6f3ec;--card:#fff;--ink:#1d2a2a;--mut:#6b7777;--ac:#0f766e;--ac2:#e8f3f1;--ok:#15803d;--bad:#b91c1c;--bd:#ddd6c8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -205,5 +206,27 @@ runT=function(t,title,done){const c=S.cur,res=c&&c.ph==S.ph&&c.ttl==title&&c.k<c
 const _show2=show;show=function(){_show2();if(S.cur&&k<T.length){S.cur.k=k;S.cur.sc=sc;save();const e=document.querySelector('.ex');if(e){e.textContent='← Back · progress saves automatically';e.onclick=dash}}};
 const _dash=dash;dash=function(){_dash();const c=S.cur,b=document.querySelector('.cta');if(b&&c&&c.ph==S.ph&&c.k>0&&c.k<c.t.length)b.textContent='▶ Resume where you left off ('+c.k+'/'+c.t.length+')'};
 addEventListener('pagehide',()=>{if(S&&S.pair)save()});document.addEventListener('visibilitychange',()=>{if(document.hidden&&S&&S.pair)save()});
+const MEM={},TM={};let DB=null,UID=null;
+const _load=load;load=p=>MEM[p]?JSON.parse(JSON.stringify(MEM[p])):_load(p);
+const dput=p=>{if(DB&&MEM[p])DB.doc('data/users/'+UID+'/lp_'+p).set({j:JSON.stringify(MEM[p])}).catch(()=>{})};
+const _save=save;save=function(){if(!S||!S.pair)return;S.ts=Date.now();MEM[S.pair]=JSON.parse(JSON.stringify(S));_save();const p=S.pair;clearTimeout(TM[p]);TM[p]=setTimeout(()=>dput(p),1200)};
+const flush=()=>{if(S&&S.pair){save();clearTimeout(TM[S.pair]);dput(S.pair)}};
+addEventListener('pagehide',flush);document.addEventListener('visibilitychange',()=>{if(document.hidden)flush()});
+(async()=>{try{const u=await claude.use('user'),d=await claude.use('db');if(!u||!d)return;UID=await u.id();if(!UID)return;DB=d;let ch=0;
+ for(const p of Object.keys(P)){const s=await d.doc('data/users/'+UID+'/lp_'+p).get();if(s.exists){const r=JSON.parse(s.data().j),l=load(p);if(!l||(r.ts||0)>(l.ts||0)){MEM[p]=r;try{localStorage.setItem('lp_'+p,JSON.stringify(r))}catch(e){}ch=1}else if((l.ts||0)>(r.ts||0))dput2(p,l)}else{const l=load(p);if(l)dput2(p,l)}}
+ if(ch&&!run){if(document.querySelector('.courses'))home();else if(S&&document.querySelector('.pills')){S=load(S.pair);dash()}}}catch(e){}})();
+function dput2(p,l){MEM[p]=l;dput(p)}
+let NOW=false;
+(async()=>{try{const u=await claude.use('user');if(u&&u.can)NOW=(await u.can('data.write'))===false}catch(e){}sv()})();
+function sv(){const e=$('sv');if(!e)return;e.innerHTML=DB&&!NOW?'☁️ <b>Saved to your account</b> — your progress follows you on any device where you’re signed in.':'💾 <b>Saved on this device.</b> To keep it safe or move to another device, copy a backup code below.'}
+const _home=home;home=function(){_home();$('app').insertAdjacentHTML('beforeend',`<section class=card><small>YOUR PROGRESS</small><p class=m id=sv></p><button onclick="bk()">📋 Backup code</button><button onclick="rs()">⤓ Restore</button><textarea id=bx rows=3 style="display:none;width:100%;margin-top:8px;border-radius:12px;padding:10px;font:13px monospace;background:var(--bg);color:var(--ink);border:1px solid var(--bd)"></textarea><div id=bm></div></section>`);sv();setTimeout(sv,2500)};
+function bk(){const o={};Object.keys(P).forEach(p=>{const s=load(p);if(s)o[p]=s});const c=btoa(unescape(encodeURIComponent(JSON.stringify(o))));const b=$('bx');b.style.display='block';b.value=c;b.select();$('bm').innerHTML='<small>Copy this code and keep it somewhere safe.</small>';try{navigator.clipboard.writeText(c).then(()=>{$('bm').innerHTML='<small>✓ Copied to clipboard. Keep it somewhere safe.</small>'})}catch(e){}}
+function rs(){const b=$('bx');b.style.display='block';b.value='';b.placeholder='Paste your backup code here';$('bm').innerHTML='<button class=pri onclick="ap()">Apply code</button>'}
+function ap(){try{const o=JSON.parse(decodeURIComponent(escape(atob($('bx').value.trim()))));Object.keys(P).forEach(p=>{if(o[p]){MEM[p]=o[p];try{localStorage.setItem('lp_'+p,JSON.stringify(o[p]))}catch(e){}dput(p)}});home()}catch(e){$('bm').innerHTML='<b class=bad>That code isn’t valid.</b> Paste it again.'}}
+let DI=null;const stand=()=>matchMedia('(display-mode:standalone)').matches||navigator.standalone,IOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+function ib(){const o=$('ins');if(o)o.remove();if(stand()||(!DI&&!IOS))return;const t=document.querySelector('.top');if(!t)return;const b=document.createElement('button');b.id='ins';b.className='pri';b.style.cssText='margin:0;min-height:40px;padding:8px 14px;font-size:14px';b.textContent='\u2b07 Install app';b.onclick=async()=>{if(DI){DI.prompt();try{await DI.userChoice}catch(e){}DI=null;ib()}else tip()};t.insertBefore(b,t.lastElementChild)}
+function tip(){const d=document.createElement('div');d.style.cssText='position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:50;padding:16px;border-radius:16px;background:var(--bg);color:var(--ink);border:1px solid var(--ac);box-shadow:0 20px 50px -10px rgba(0,0,0,.5)';d.innerHTML='<b>Install on iPhone / iPad</b><p class=m style="margin:6px 0">In Safari tap the <b>Share</b> button, then <b>Add to Home Screen</b>.</p><button class=pri onclick="this.parentNode.remove()" style="margin:0">Got it</button>';document.body.appendChild(d)}
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();DI=e;ib()});addEventListener('appinstalled',()=>{DI=null;ib()});ib();
+if('serviceWorker' in navigator&&location.protocol.indexOf('http')==0)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 home();
 </script></body></html>
