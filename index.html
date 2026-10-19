@@ -286,5 +286,12 @@ go=function(){const d=S.day;run=true;const it=unit(d).i;
   return runT(t,'Lesson: '+unit(d).t,()=>{S.ph=2;save();dash()})}
  runT(shuf(it.flatMap(x=>[{t:pick(['mc','mr','ml']),it:x},{t:pick(['w','d']),it:x},{t:'v',it:x}])),'Quiz: '+unit(d).t,(s,m)=>{S.log[d]={q:s+'/'+m};S.ph=3;S.date=today();save();dash()})};
 
+const cn=()=>document.querySelector('.courses')?home():dash();
+function ro(p,c){const e=$('so_'+p);if(!e)return;e.innerHTML=c?`<small>Erase all progress in ${P[p].n} and begin again at Day 1?</small><br><button class=pri onclick="rz('${p}')">Yes, start over</button><button onclick="cn()">Cancel</button>`:`<button onclick="ro('${p}',1)">⟲ Start over</button>`}
+function rz(p){delete MEM[p];try{localStorage.removeItem('lp_'+p)}catch(e){}S=null;start(p)}
+function rt(){S.cur=null;save();dash()}
+const _home2=home;home=function(){_home2();document.querySelectorAll('.crs').forEach(b=>{const m=(b.getAttribute('onclick')||'').match(/'([^']+)'/);if(!m)return;const p=m[1],s=load(p);if(!s||(s.day<=1&&s.ph<=1&&!s.cur))return;const em=b.querySelector('em');if(em)em.textContent='Resume where you left off →';b.insertAdjacentHTML('afterend',`<div id="so_${p}" style="margin:-4px 0 6px"><button onclick="ro('${p}',1)">⟲ Start over</button></div>`)})};
+const _dash2=dash;dash=function(){_dash2();if(!S||S.day>90&&!$('app'))return;const c=S.cur&&S.cur.ph==S.ph&&S.cur.k>0&&S.cur.k<S.cur.t.length;$('app').insertAdjacentHTML('beforeend',`<section class=card><small>PROGRESS OPTIONS</small><div style="margin-top:6px">${c?'<button onclick="rt()">↺ Restart this step from the beginning</button>':''}<span id="so_${S.pair}"><button onclick="ro('${S.pair}',1)">⟲ Start course over</button></span></div></section>`)};
+
 home();
 </script></body></html>
