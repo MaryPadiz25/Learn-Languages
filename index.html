@@ -75,6 +75,7 @@ main{padding-top:10px;padding-bottom:calc(40px + env(safe-area-inset-bottom,0px)
 #fb button{width:100%}
 .ex{align-self:flex-start}}
 @media(max-width:360px){h1{font-size:28px}.feat{grid-template-columns:1fr}}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;font-size:17px}.opt.g{border-color:var(--ok);background:rgba(52,211,153,.16)}.opt.r{border-color:var(--bad);background:rgba(251,113,133,.14)}
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet"></head><body><header class="top"><button class="brand" onclick="home()">🗣️ Lingua90</button><button onclick="th()" aria-label="Toggle light or dark theme">◐ Theme</button></header><main id="app"></main>
 <script>
 const D=`Greetings~Hello|Bonjour|Kumusta~Thank you|Merci|Salamat~Please|S’il vous plaît|Palihug~Goodbye|Au revoir|Babay
@@ -108,13 +109,43 @@ Culture~tradition|tradition|tradisyon~festival|fête|pista~I like your country|J
 Conversation~What do you do?|Que faites-vous dans la vie ?|Unsa imong trabaho?~Where are you from?|D’où venez-vous ?|Taga-asa ka?~I am learning|J’apprends|Nagtuon ko~I speak a little|Je parle un peu|Gamay ra ko’g sabot
 Farewell~See you tomorrow|À demain|Kita ta ugma~Take care|Prenez soin de vous|Amping~Good luck|Bonne chance|Swerte~Congratulations|Félicitations|Maayong pagbati`
 .split('\n').map(l=>{const p=l.split('~');return{t:p[0],i:p.slice(1).map(x=>{const a=x.split('|');return{en:a[0],fr:a[1],ceb:a[2]}})}});
+{const NW=`Hobbies~I like to read|J’aime lire|Gusto ko mobasa~music|musique|musika~to sing|chanter|mokanta
+Cooking~Where is the kitchen?|Où est la cuisine ?|Asa ang kusina?~to cook|cuisiner|magluto~spicy|épicé|maanghang
+Surprise & pride~I am worried|Je suis inquiet|Nabalaka ko~I am proud|Je suis fier|Mapasigarbuhon ko~surprised|surpris|natingala
+Transport~Where do I get off?|Où dois-je descendre ?|Asa ko manaog?~fare|tarif|plete~traffic|circulation|trapiko
+Hotel~I have a reservation|J’ai une réservation|Naay reserbasyon ko~Is breakfast included?|Le petit déjeuner est-il inclus ?|Apil ba ang pamahaw?~room key|clé de chambre|yawe sa kwarto
+Phone~Can I use your phone?|Puis-je utiliser votre téléphone ?|Mahimo ko mogamit sa imong telepono?~battery|batterie|baterya~to call|appeler|motawag
+Money~I need to withdraw money|Je dois retirer de l’argent|Kinahanglan ko mokuha og kwarta~bank|banque|bangko~change|monnaie|sukli
+Distance~How far is it?|C’est à quelle distance ?|Unsa kalayo?~near|près|duol~far|loin|layo
+Clothes shopping~Do you have a smaller size?|Avez-vous une taille plus petite ?|Naa ba kay mas gamay nga size?~to try on|essayer|sulayan~receipt|reçu|resibo
+Asking for help~Can you speak slowly?|Pouvez-vous parler lentement ?|Mahimo ka ba maghinay-hinay og sulti?~What does this mean?|Que veut dire ceci ?|Unsa kini nga buot ipasabot?~How do you say this?|Comment dit-on cela ?|Unsaon pagsulti ani?
+Invitations~Would you like to come?|Voulez-vous venir ?|Gusto ka ba moanha?~I am free tonight|Je suis libre ce soir|Libre ko karong gabii~Let’s meet at six|Retrouvons-nous à six heures|Magkita ta sa alas sais
+Compliments~You speak well|Vous parlez bien|Maayo ka mosulti~That is beautiful|C’est magnifique|Nindot kaayo kana~Thank you for everything|Merci pour tout|Salamat sa tanan
+Family talk~I have two children|J’ai deux enfants|Duha akong anak~my husband|mon mari|akong bana~my wife|ma femme|akong asawa
+Daily routine~I wake up at six|Je me réveille à six heures|Mobangon ko alas sais~I take a shower|Je prends une douche|Maligo ko~I go to sleep|Je vais dormir|Matulog na ko
+School~homework|devoirs|homwerk~teacher|professeur|magtutudlo~I have a question|J’ai une question|Naay ko pangutana
+Opinions II~That is a good idea|C’est une bonne idée|Maayo kana nga ideya~I am not sure|Je ne suis pas sûr|Dili ko sigurado~It depends|Ça dépend|Nagdepende
+Complaints~There is a problem|Il y a un problème|Naay problema~It does not work|Ça ne marche pas|Dili ni molihok~I want a refund|Je veux un remboursement|Gusto ko og refund
+Past stories~When I was a child|Quand j’étais enfant|Sa bata pa ko~I used to live there|J’habitais là-bas|Nagpuyo ko didto kaniadto~It was fun|C’était amusant|Lingaw kaayo
+Plans~What are your plans?|Quels sont vos projets ?|Unsa imong mga plano?~I am going to visit|Je vais rendre visite|Mobisita ko~I hope so|Je l’espère|Nanghinaut ko
+Nature~sea|mer|dagat~mountain|montagne|bukid~beautiful view|belle vue|nindot nga talan-awon
+Technology~internet|internet|internet~password|mot de passe|password~to send a message|envoyer un message|magpadala og mensahe
+Health II~I have a fever|J’ai de la fièvre|Gilantaan ko~Where does it hurt?|Où avez-vous mal ?|Asa ang sakit?~medicine|médicament|tambal
+Official papers~passport|passeport|pasaporte~Please fill out this form|Veuillez remplir ce formulaire|Palihug pun-a kini nga porma~visa|visa|bisa
+Debate~In my opinion|À mon avis|Sa akong panan-aw~on the other hand|d’autre part|sa laing bahin~I completely agree|Je suis tout à fait d’accord|Uyon kaayo ko
+Formal writing~Dear Sir or Madam|Madame, Monsieur|Minahal nga Sir o Ma’am~I look forward to your reply|Dans l’attente de votre réponse|Naghulat ko sa imong tubag~Best regards|Cordialement|Pagtahud
+Wishes~I wish I could travel|J’aimerais pouvoir voyager|Hinaut unta makabiyahe ko~I hope you are well|J’espère que vous allez bien|Nanghinaut ko nga maayo ka~I am sorry to hear that|Je suis désolé de l’apprendre|Nagmahay ko nga nakabalo ana
+Storytelling~first|d’abord|una~then|ensuite|dayon~finally|enfin|sa kataposan
+Culture II~What is the custom here?|Quelle est la coutume ici ?|Unsa ang kostumbre dinhi?~respect for elders|respect des aînés|pagtahod sa mga tigulang~hospitality|hospitalité|pagkamaabiabihon
+Confidence~practice every day|pratiquer chaque jour|magpraktis kada adlaw~I understand now|Je comprends maintenant|Nakasabot na ko~I can speak with confidence|Je peux parler avec confiance|Makasulti ko nga adunay kompiyansa
+Graduation~I have learned a lot|J’ai beaucoup appris|Daghan kog nakat-onan~Thank you, teacher|Merci, professeur|Salamat, maestro~See you again|À bientôt|Hangtod sa sunod`.split('\n').map(l=>{const p=l.split('~');return{t:p[0],i:p.slice(1).map(x=>{const a=x.split('|');return{en:a[0],fr:a[1],ceb:a[2]}})}});const O=D.slice();D.length=0;O.forEach(u=>D.push({t:u.t+' · part 1',i:u.i.slice(0,2)},{t:u.t+' · part 2',i:u.i.slice(2)}));NW.forEach(u=>D.push(u))}
 const P={'fr-en':{n:'French → English',s:'fr',t:'en',tl:'en-US'},'en-fr':{n:'English → French',s:'en',t:'fr',tl:'fr-FR'},'en-ceb':{n:'English → Cebuano',s:'en',t:'ceb',tl:'fil-PH'}};
 const $=id=>document.getElementById(id),today=()=>new Date().toDateString();
 let S,T,k,sc,nxt,ttl,run=false;
 let load=p=>{try{return JSON.parse(localStorage.getItem('lp_'+p))}catch(e){return null}};
 let save=()=>{try{localStorage.setItem('lp_'+S.pair,JSON.stringify(S));localStorage.setItem('lp_last',S.pair)}catch(e){}};
-const lvl=d=>d<=30?'Basic':d<=60?'Intermediate':'Advanced';
-const unit=d=>D[Math.ceil(d/3)-1];
+const lvl=d=>d<=20?'Basic':d<=45?'Intermediate':'Advanced';
+const unit=d=>D[d-1];
 const shuf=a=>a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
 const norm=s=>s.toLowerCase().replace(/[’']/g,"'").replace(/[.,!?¡¿;:"]/g,'').replace(/\s+/g,' ').trim();
 const flat=s=>norm(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/œ/g,'oe');
@@ -186,7 +217,7 @@ function dash(){run=false;const p=P[S.pair],d=S.day;
  const qs=Object.values(S.log).map(x=>x.q).filter(Boolean).map(q=>q.split('/')),av=qs.length?Math.round(qs.reduce((a,b)=>a+b[0]/b[1],0)/qs.length*100)+'%':'–';
  const pills=Object.keys(P).map(q=>`<button class="pill ${q==S.pair?'sel':''}" onclick="start('${q}')">${FL[q][0]} → ${FL[q][1]}</button>`).join('');
  const st=['Review','Learn','Quiz'].map((x,i)=>`<span class="${S.ph==i?'on':S.ph>i?'dn':''}">${i+1}. ${x}</span>`).join('');
- const map=[...Array(90)].map((_,i)=>{const n=i+1;return `<i class="cell L${n<=30?0:n<=60?1:2} ${n<=fin?'f':''} ${n==d?'now':''}" title="Day ${n} · ${unit(n).t}"></i>`}).join('');
+ const map=[...Array(90)].map((_,i)=>{const n=i+1;return `<i class="cell L${n<=20?0:n<=45?1:2} ${n<=fin?'f':''} ${n==d?'now':''}" title="Day ${n} · ${unit(n).t}"></i>`}).join('');
  const words=u.i.map((x,i)=>`<button class=wd onclick="sp(${i})"><b>🔊 ${x[p.t]}</b><small>${x[p.s]}</small></button>`).join('');
  $('app').innerHTML=`<div class=pills>${pills}</div>
  <section class="card main"><div class=ringwrap><svg viewBox="0 0 120 120" class=ring><circle cx=60 cy=60 r=52 class=rb /><circle cx=60 cy=60 r=52 class=rf stroke-dasharray="${C}" stroke-dashoffset="${C*(1-fin/90)}"/></svg><div class=rt><b>${d}</b><small>of 90</small></div></div>
@@ -226,7 +257,7 @@ function ap(){try{const o=JSON.parse(decodeURIComponent(escape(atob($('bx').valu
 let DI=null;const stand=()=>matchMedia('(display-mode:standalone)').matches||navigator.standalone,IOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
 function ib(){const o=$('ins');if(o)o.remove();if(stand()||(!DI&&!IOS))return;const t=document.querySelector('.top');if(!t)return;const b=document.createElement('button');b.id='ins';b.className='pri';b.style.cssText='margin:0;min-height:40px;padding:8px 14px;font-size:14px';b.textContent='\u2b07 Install app';b.onclick=async()=>{if(DI){DI.prompt();try{await DI.userChoice}catch(e){}DI=null;ib()}else tip()};t.insertBefore(b,t.lastElementChild)}
 function tip(){const d=document.createElement('div');d.style.cssText='position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:50;padding:16px;border-radius:16px;background:var(--bg);color:var(--ink);border:1px solid var(--ac);box-shadow:0 20px 50px -10px rgba(0,0,0,.5)';d.innerHTML='<b>Install on iPhone / iPad</b><p class=m style="margin:6px 0">In Safari tap the <b>Share</b> button, then <b>Add to Home Screen</b>.</p><button class=pri onclick="this.parentNode.remove()" style="margin:0">Got it</button>';document.body.appendChild(d)}
-addEventListener('beforeinstallprompt',e=>{e.preventDefault();DI=e;ib()});addEventListener('appinstalled',()=>{DI=null;ib()});ib();
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();DI=e;ib()});addEventListener('appinstalled',()=>{DI=null;ib()});try{ib()}catch(e){}
 if('serviceWorker' in navigator&&location.protocol.indexOf('http')==0)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 let REC=null;
 mic=function(){const R=window.SpeechRecognition||window.webkitSpeechRecognition,x=T[k],tg=x.it[P[S.pair].t],fb=$('fb');
@@ -239,6 +270,21 @@ mic=function(){const R=window.SpeechRecognition||window.webkitSpeechRecognition,
  r.onend=()=>{if(fb.textContent.includes('Listening'))fb.innerHTML='Didn’t catch that.<br><button class=pri onclick="mic()">🎤 Try again</button><button onclick="k++;show()">Skip →</button>'};
  try{r.start()}catch(e){setTimeout(()=>{try{r.start()}catch(_){}},300)}};
 const _res=res;res=function(p,m){const x=T[k];if(x.t=='v'&&!p&&!x.d){$('fb').innerHTML=`<b class=bad>✗ Not quite</b> ${m||''}<div>Say: <b>${x.it[P[S.pair].t]}</b></div><button onclick="say()">🔊 Hear it</button><button class=pri onclick="mic()">🎤 Try again</button><button onclick="k++;show()">Skip →</button>`;return}_res(p,m)};
+
+const KS=['mc','mr','ml','w','d','v'],pick=a=>a[Math.random()*a.length|0];
+function mcx(){const x=T[k];if(!/^m[crl]$/.test(x.t))return;const p=P[S.pair],it=x.it,rev=x.t!='mc',lis=x.t=='ml',a=rev?it[p.s]:it[p.t];x.a=a;
+ if(!x.o){const pool=[...new Set(D.flatMap(u=>u.i).map(z=>rev?z[p.s]:z[p.t]))].filter(v=>v!=a);x.o=shuf([a,...shuf(pool.sort((u,v)=>Math.abs(u.length-a.length)-Math.abs(v.length-a.length)).slice(0,9)).slice(0,3)])}
+ const L={en:'English',fr:'French',ceb:'Cebuano'};
+ document.querySelector('.card').innerHTML=`<small>${lis?'LISTENING · pick the meaning':rev?'MULTIPLE CHOICE · pick the meaning':'MULTIPLE CHOICE · pick the '+L[p.t]}</small>`+(lis?'<h2>🔊 ?</h2><button onclick="say()">Play again</button>':`<h2>${rev?it[p.t]:it[p.s]}</h2>`)+'<div>'+x.o.map((o,i)=>`<button class=opt onclick="pk(${i})">${o}</button>`).join('')+'</div><div id=fb style="margin-top:10px"></div>';
+ if(lis)setTimeout(say,300)}
+function pk(i){const x=T[k];if(x.d)return;res(x.o[i]==x.a,'');document.querySelectorAll('.opt').forEach((b,j)=>{b.disabled=true;if(x.o[j]==x.a)b.classList.add('g');else if(j==i)b.classList.add('r')})}
+const _show3=show;show=function(){_show3();if(k<T.length)mcx()};
+go=function(){const d=S.day;run=true;const it=unit(d).i;
+ if(S.ph==0){const past=D.slice(0,d-1).flatMap(u=>u.i);if(!past.length)S.ph=1;else{const n=Math.min(12,Math.max(6,past.length)),ks=shuf(KS);
+  return runT(shuf(past).concat(shuf(past)).concat(shuf(past)).slice(0,n).map((x,i)=>({t:ks[i%6],it:x})),'Review of past sessions',(s,m)=>{S.log[d-1]=S.log[d-1]||{};S.log[d-1].r=s+'/'+m;S.ph=1;save();dash()})}}
+ if(S.ph==1){const q=[['s','mc','w','v'],['ml','d','mr','v'],['s','w','ml','v']];let t=[];for(let r=0;r<S.hrs;r++){const sq=q[(d+r)%3];t=t.concat(it.flatMap(x=>sq.map(y=>({t:y,it:x}))))}
+  return runT(t,'Lesson: '+unit(d).t,()=>{S.ph=2;save();dash()})}
+ runT(shuf(it.flatMap(x=>[{t:pick(['mc','mr','ml']),it:x},{t:pick(['w','d']),it:x},{t:'v',it:x}])),'Quiz: '+unit(d).t,(s,m)=>{S.log[d]={q:s+'/'+m};S.ph=3;S.date=today();save();dash()})};
 
 home();
 </script></body></html>
